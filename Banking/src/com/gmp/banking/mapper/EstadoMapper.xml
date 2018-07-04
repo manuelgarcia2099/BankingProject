@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gmp.banking.mapper.EstadoMapper" >
+  <resultMap id="BaseResultMap" type="com.gmp.banking.bean.TbEstado" >
+    <id column="code_est" property="code_est" jdbcType="INTEGER" />
+    <result column="desc_est" property="desc_est" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    code_est, desc_est
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from tb_estado
+    where code_est = #{code_est,jdbcType=INTEGER}
+  </select>
+  <select id="ObtenerRegistros" resultMap="BaseResultMap" parameterType="com.gmp.banking.bean.TbEstado" >
+    select code_est, desc_est
+    from tb_estado where 1 = 1 
+    <if test="code_est != null" >
+        and code_est = #{code_est,jdbcType=INTEGER}
+    </if>
+    <if test="desc_est != null and desc_est != ''" >
+        and desc_est = #{desc_est,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="ObtenerUnRegistro" resultMap="BaseResultMap" parameterType="com.gmp.banking.bean.TbEstado" >
+    select code_est, desc_est
+    from tb_estado where 1 = 1 
+    <if test="code_est != null" >
+        and code_est = #{code_est,jdbcType=INTEGER}
+    </if>
+    <if test="desc_est != null and desc_est != ''" >
+        and desc_est = #{desc_est,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_estado
+    where code_est = #{code_est,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gmp.banking.bean.TbEstado" >
+    insert into tb_estado (code_est, desc_est)
+    values (#{code_est,jdbcType=INTEGER}, #{desc_est,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gmp.banking.bean.TbEstado" >
+    insert into tb_estado
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="code_est != null" >
+        code_est,
+      </if>
+      <if test="desc_est != null" >
+        desc_est,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="code_est != null" >
+        #{code_est,jdbcType=INTEGER},
+      </if>
+      <if test="desc_est != null" >
+        #{desc_est,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <selectKey resultType="int" keyProperty="code_est" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gmp.banking.bean.TbEstado" >
+    update tb_estado
+    <set >
+      <if test="desc_est != null" >
+        desc_est = #{desc_est,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where code_est = #{code_est,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gmp.banking.bean.TbEstado" >
+    update tb_estado
+    set desc_est = #{desc_est,jdbcType=VARCHAR}
+    where code_est = #{code_est,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ui:composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" template="/plantillas/template.xhtml" >
+  <ui:define name="content" >
+    <h:form id="formDetailbCliente" >
+      <p:growl id="msgCliente" autoUpdate="true" showDetail="true" life="4800" />
+      <div class="ContainerIndent" />
+      <span class="FontBold Fs18 hardblue Container100" >
+        <center >
+          <h:outputLabel value="#{msg['lbl.button.sim.pre']}" />
+        </center>
+      </span>
+      <div class="Container100" >
+        <div class="ContainerIndent" >
+          <p:panel id="pnlLoanCliente" >
+            <div class="Container100" >
+            
+              <div class="Container25 Responsive"><div class="ContainerIndent"><p:outputLabel value="#{msg['lbl.cliente.column.nom']}" for="txtNom" /></div></div>
+              <div class="Container25 Responsive"><div class="ContainerIndent"><p:outputLabel id="txtNom" value="#{clienteBean.cliente.name_cli}" style="font-weight:bold;" /></div></div>
+            <div class="Container25 Responsive"><div class="ContainerIndent"><p:outputLabel value="#{msg['lbl.cliente.column.ape']}" for="txtApe" /></div></div>
+              <div class="Container25 Responsive"><div class="ContainerIndent"><p:outputLabel id="txtApe" value="#{clienteBean.cliente.sobr_cli}" style="font-weight:bold;" /></div></div>
+              
+            <div class="Container20 Responsive" ><div class="ContainerIndent" ><p:outputLabel value="#{msg['lbl.cliente.column.sol']}" for="txtMon" styleClass="Wid90" /> </div>    </div>
+            <div class="Container30 Responsive" > <div class="ContainerIndent" > 
+            <p:inputText id="txtMon" styleClass="Wid90" value="#{clienteBean.emprestimo.valorSolicitado}" maxlength="50" required="true" requiredMessage="We need a value" />
+            </div></div>
+                  
+           <div class="Container20 Responsive" ><div class="ContainerIndent" ><p:outputLabel value="#{msg['lbl.cliente.column.mes']}" for="txtTime" styleClass="Wid90" /> </div>    </div>
+            <div class="Container30 Responsive" > <div class="ContainerIndent" > 
+            <p:inputText id="txtTime" styleClass="Wid90" value="#{clienteBean.emprestimo.tempo}" maxlength="50" required="true" requiredMessage="We need a value" />
+            </div></div>
+            
+            <div class="Container20 Responsive" ><div class="ContainerIndent" ><p:outputLabel value="#{msg['lbl.cliente.column.int']}" for="txtJur" styleClass="Wid90" /> </div>    </div>
+            <div class="Container30 Responsive" > <div class="ContainerIndent" > 
+            <p:inputText id="txtJur" styleClass="Wid90" value="#{clienteBean.emprestimo.juros}" maxlength="50" disabled="true" />
+            </div></div>
+            
+              <div class="Container20 Responsive" ><div class="ContainerIndent" ><p:outputLabel value="#{msg['lbl.cliente.column.cuo']}" for="txtCuo" styleClass="Wid90" /> </div>    </div>
+            <div class="Container30 Responsive" > <div class="ContainerIndent" > 
+            <p:inputText id="txtCuo" styleClass="Wid90" value="#{clienteBean.emprestimo.cuota}" maxlength="50" disabled="true" />
+            </div></div>
+            
+             <div class="Container20 Responsive" ><div class="ContainerIndent" ><p:outputLabel value="#{msg['lbl.cliente.column.tot']}" for="txtTot" styleClass="Wid90" /> </div>    </div>
+            <div class="Container30 Responsive" > <div class="ContainerIndent" > 
+            <p:inputText id="txtTot" styleClass="Wid90" value="#{clienteBean.emprestimo.total}" maxlength="50" disabled="true" />
+            </div></div>
+                  
+			<div class="Container100" >
+                <div class="ContainerIndent" >
+                  <p:commandButton value="#{msg['lbl.button.limpiar']}" styleClass="OrangeButton Fright" style="margin-right: 5px;" actionListener="#{clienteBean.LimpiarEmprestimo}" update="pnlLoanCliente" />
+                  <p:commandButton value="#{msg['lbl.button.cal']}" styleClass="GreenButton Fright" style="margin-right: 5px;" actionListener="#{clienteBean.Calcular}" update="pnlLoanCliente" />
+                </div>
+              </div>
+                        
+            </div>
+          </p:panel>
+        </div>
+      </div>
+      
+
+    </h:form>
+  </ui:define>
+</ui:composition>

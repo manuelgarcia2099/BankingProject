@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ui:composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" template="/plantillas/template.xhtml" >
+  <ui:define name="content" >
+    <h:form id="formNewCliente" >
+      <p:growl id="msgClienteAdd" autoUpdate="true" showDetail="true" life="4800" />
+      <div class="EmptyBox10" />
+      <div class="Container100" >
+        <div class="ContainerIndent" >
+          <p:panel header="#{clienteBean.titulo}" >
+            <div class="Container100" >
+              <div class="ContainerIndent" >
+                <p:panel id="Clientedata" >
+                  <div class="Container100" >
+                    <div class="ContainerIndent" >
+                      <h:outputLabel value="#{msg['lbl.cliente.add.panel.subtitle']}" styleClass="FontBold Fs18 hardblue" />
+                    </div>
+                  </div>
+                  <div class="Container20 Responsive" >
+                  
+                    <div class="ContainerIndent" >
+                      <p:outputLabel value="#{msg['lbl.cliente.column.nom']} :" for="txtNom" styleClass="Wid90" />
+                    </div>
+                  </div>
+                  <div class="Container30 Responsive" >
+                    <div class="ContainerIndent" >
+                      <p:inputText id="txtNom" styleClass="Wid90" value="#{clienteBean.cliente.name_cli}" maxlength="50" required="true"/>
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="Container20 Responsive" >
+                    <div class="ContainerIndent" >
+                      <p:outputLabel value="#{msg['lbl.cliente.column.ape']} :" for="txtApe" styleClass="Wid90" />
+                    </div>
+                  </div>
+                  <div class="Container30 Responsive" >
+                    <div class="ContainerIndent" >
+                      <p:inputText id="txtApe" styleClass="Wid90" value="#{clienteBean.cliente.sobr_cli}" maxlength="50"  required="true" />
+                    </div>
+                  </div>
+                  
+                   <div class="Container20 Responsive" >
+                    <div class="ContainerIndent" >
+                      <p:outputLabel value="#{msg['lbl.cliente.column.tip']} :" for="cbxTipo" styleClass="Wid90" />
+                    </div>
+                  </div>
+                  <div class="Container30 Responsive" >
+                    <div class="ContainerIndent" >
+                    
+                      
+                      <!--                     Con Ajax, renderizamos el cbxRegion -->
+                     <p:selectOneMenu id="cbxTipo" value="#{clienteBean.cliente.code_tip}" styleClass="Wid90" required="true" >
+                                 <f:selectItem itemLabel="Select One" itemValue="#{null}" />
+                                 <f:selectItems value="#{utilBean.listTipo}" var="c" itemLabel="#{c.desc_tip}" itemValue="#{c.code_tip}" />
+                                 
+                                <p:ajax event="change" listener="#{clienteBean.ObtenerTipoCliente}" update="panelEspecial"/>
+                                            
+                     </p:selectOneMenu>
+                      
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="Container20 Responsive" >
+                    <div class="ContainerIndent" >
+                      <p:outputLabel value="#{msg['lbl.cliente.column.rmv']} :" for="txtRme" styleClass="Wid90" />
+                    </div>
+                  </div>
+                  <div class="Container30 Responsive" >
+                    <div class="ContainerIndent" >
+                      <p:inputText id="txtRme" styleClass="Wid90" value="#{clienteBean.cliente.rmes_cli}" maxlength="10"  required="true">
+                      <p:ajax event="blur" listener="#{clienteBean.ObtenerTipoRisco}"  update="txtRis" />
+                      </p:inputText>
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="Container20 Responsive" >
+                    <div class="ContainerIndent" >
+                      <p:outputLabel value="#{msg['lbl.cliente.column.dr1']} :" for="txtDir1" styleClass="Wid90" />
+                    </div>
+                  </div>
+                  <div class="Container30 Responsive" >
+                    <div class="ContainerIndent" >
+                      <p:inputText id="txtDir1" styleClass="Wid90" value="#{clienteBean.cliente.end1_cli}" maxlength="100"  required="true" />
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="Container20 Responsive" >
+                    <div class="ContainerIndent" >
+                      <p:outputLabel value="#{msg['lbl.cliente.column.dr2']} :" for="txtDir2" styleClass="Wid90" />
+                    </div>
+                  </div>
+                  <div class="Container30 Responsive" >
+                    <div class="ContainerIndent" >
+                      <p:inputText id="txtDir2" styleClass="Wid90" value="#{clienteBean.cliente.end2_cli}" maxlength="100"  required="true" />
+                    </div>
+                  </div>
+                  
+                
+                  
+                  
+                    <div class="Container20 Responsive" >
+                    <div class="ContainerIndent" >
+                      <p:outputLabel value="#{msg['lbl.cliente.column.ris']} :" for="txtRis" styleClass="Wid90" />
+                    </div>
+                  </div>
+                  
+
+                  <div class="Container30 Responsive" >
+                    <div class="ContainerIndent" >
+                      <p:inputText id="txtRis" styleClass="Wid90" value="#{utilBean.ObtenerDescricao(clienteBean.cliente.code_ris,'ris')}" maxlength="10" disabled="true" />
+                    </div>
+                  </div>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                    <h:panelGroup id="panelEspecial">
+                  
+                
+                   <c:if test="#{clienteBean.cliente.code_tip == 1}">
+                  
+                  <div class="Container20 Responsive" >
+                    <div class="ContainerIndent" >
+                      <p:outputLabel value="#{msg['lbl.cliente.column.pat']} :" for="txtPat" styleClass="Wid90" />
+                    </div>
+                  </div>
+                  <div class="Container30 Responsive" >
+                    <div class="ContainerIndent" >
+                    <h:panelGroup id="layPat">
+                     <p:inputText id="txtPat" styleClass="Wid90" value="#{clienteBean.cliente.patr_cli}" maxlength="10" />
+                      </h:panelGroup>
+                    </div>
+                  </div>
+                  
+                  </c:if>
+                  
+                  
+                   <c:if test="#{clienteBean.cliente.code_tip == 2}">
+                  
+                  <div class="Container20 Responsive" >
+                    <div class="ContainerIndent" >
+                      <p:outputLabel value="#{msg['lbl.cliente.column.div']} :" for="txtDiv" styleClass="Wid90" />
+                    </div>
+                  </div>
+                  <div class="Container30 Responsive" >
+                    <div class="ContainerIndent" >
+                    
+                    <h:panelGroup id="layDeb">
+                     <p:inputText id="txtDiv" styleClass="Wid90" value="#{clienteBean.cliente.divi_cli}" maxlength="10" />
+                      </h:panelGroup>
+                    
+                      
+                    </div>
+                  </div>
+                  
+                  </c:if>
+                  
+                   <c:if test="#{clienteBean.cliente.code_tip == 3}">
+                  
+                  
+                  <div class="Container20 Responsive" >
+                    <div class="ContainerIndent" >
+                      <p:outputLabel value="#{msg['lbl.cliente.column.lab']} :" for="txtEst" styleClass="Wid90" />
+                    </div>
+                  </div>
+                  <div class="Container30 Responsive" >
+                    <div class="ContainerIndent" >
+                    
+                       <p:selectBooleanCheckbox  id="txtEst" styleClass="Wid90"  value="#{clienteBean.checked}"  maxlength="10"/>
+                      
+                    
+                     
+                    </div>
+                  </div>
+                  
+                  </c:if>
+                  
+                  </h:panelGroup>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="Container100" >
+                    <div class="ContainerIndent" >
+                      <p:commandButton value="#{msg['lbl.button.cerrar']}" styleClass="RedButton Fright" oncomplete="PF('confirmCloseClienteAdd').show()" />
+                      <p:commandButton value="#{msg['lbl.button.guardar']}" rendered="#{clienteBean.accion == 1}" actionListener="#{clienteBean.guardarRegistroCliente}" styleClass="GreenButton Fright" style="margin-right: 5px;" />
+                      <p:commandButton value="#{msg['lbl.button.update']}" rendered="#{clienteBean.accion == 2}" actionListener="#{clienteBean.actualizarRegistroCliente}" styleClass="GreenButton Fright" style="margin-right: 5px;" />
+                    </div>
+                  </div>
+                  <div >
+                    <p:confirmDialog id="confirmCloseClienteAdd" global="true" showEffect="fade" hideEffect="explode" widgetVar="confirmCloseClienteAdd" header="#{msg['lbl.mensaje.confirm.title']}" severity="alert" message="#{msg['lbl.mensaje.cerrarventana']}" >
+                      <p:button outcome="searchCliente" value="Yes" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="confirmCloseClienteAdd" oncomplete="PF('confirmCloseClienteAdd').hide()" />
+                      <p:commandButton value="No" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update="confirmCloseClienteAdd" oncomplete="PF('confirmCloseClienteAdd').hide()" />
+                    </p:confirmDialog>
+                  </div>
+                </p:panel>
+              </div>
+            </div>
+          </p:panel>
+        </div>
+      </div>
+    </h:form>
+  </ui:define>
+</ui:composition>

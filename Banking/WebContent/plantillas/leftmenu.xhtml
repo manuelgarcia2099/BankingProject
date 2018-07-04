@@ -1,0 +1,23 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	>    
+
+<div id="layout-menubar" class="bigmenu Unselectable fontRegular">
+	<div class="layout-menubarinner-box" id="buttonArea">
+            <a href="javascript:;" id="layout-menubar-resize" class="BordRad3" title="Menu Resize"><i class="icon-th-list-2"></i></a>
+            <a href="javascript:;" id="layout-menubar-resize2" class="BordRad3" title="Open Menu"><i class="icon-menu"></i></a>
+	</div>
+
+	<ul class="layout-menubar-container">
+	
+	<p:outputLabel > <li id="sm_1_0" class="layout-menubar-default"><a href="#{request.contextPath}/pages/cliente/searchCliente.xhtml" class="level-1"><i class="icon-user yellow i"></i> <p:outputLabel value=" #{msg['lbl.menuleft.admin.cliente']}" style="color:white;" /></a></li></p:outputLabel>
+               
+	</ul>
+	
+</div>
+</ui:composition>

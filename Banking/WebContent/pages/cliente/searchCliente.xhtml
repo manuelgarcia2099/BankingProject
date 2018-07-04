@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ui:composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" template="/plantillas/template.xhtml" >
+  <ui:define name="content" >
+    <h:form id="formListCliente" >
+      <p:growl id="msgCliente" autoUpdate="true" showDetail="true" life="4800" />
+      <div class="ContainerIndent" />
+      <span class="FontBold Fs18 hardblue Container100" >
+        <center >
+          <h:outputLabel value="#{msg['lbl.bcliente.search.title']}" />
+        </center>
+      </span>
+      <div class="Container100" >
+        <div class="ContainerIndent" >
+          <p:panel id="pnlBusquedaCliente" >
+            <div class="Container100" >
+            
+            
+              <div class="Container25 Responsive"><div class="ContainerIndent"><p:outputLabel styleClass="Wid90" value="#{msg['lbl.cliente.column.nom']}: " /></div></div>
+              <div class="Container25 Responsive"><div class="ContainerIndent"><p:inputText styleClass="Wid90" placeholder="#{msg['lbl.cliente.column.nom']}" value="#{clienteBean.clienteSearch.name_cli}" /></div></div>
+                   
+              <div class="Container25 Responsive"><div class="ContainerIndent"><p:outputLabel styleClass="Wid90" value="#{msg['lbl.cliente.column.ape']}: " /></div></div>
+              <div class="Container25 Responsive"><div class="ContainerIndent"><p:inputText styleClass="Wid90" placeholder="#{msg['lbl.cliente.column.ape']}" value="#{clienteBean.clienteSearch.sobr_cli}" /></div></div>
+
+
+			  <div class="Container25 Responsive"><div class="ContainerIndent"><p:outputLabel styleClass="Wid90" value="#{msg['lbl.cliente.column.tip']}:"/></div></div>
+			  <div class="Container25 Responsive"><div class="ContainerIndent">
+			  			<p:selectOneMenu id="cbxTipo"	value="#{clienteBean.clienteSearch.code_tip}" styleClass="Wid90">
+			  					<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+			  					<f:selectItems value="#{utilBean.listTipo}" var="p" itemLabel="#{p.desc_tip}" itemValue="#{p.code_tip}" />
+						</p:selectOneMenu>
+			 </div>
+			 </div>
+			 
+			 <div class="Container25 Responsive"><div class="ContainerIndent"><p:outputLabel styleClass="Wid90" value="#{msg['lbl.cliente.column.ris']}:"/></div></div>
+			  <div class="Container25 Responsive"><div class="ContainerIndent">
+			  			<p:selectOneMenu id="cbxRisco" value="#{clienteBean.clienteSearch.code_ris}" styleClass="Wid90">
+			  					<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+			  					<f:selectItems value="#{utilBean.listRisco}" var="p" itemLabel="#{p.desc_ris}" itemValue="#{p.code_ris}" />
+						</p:selectOneMenu>
+			 </div>
+			 </div>
+
+			  <div class="Container100" >
+                <div class="ContainerIndent" >
+                  <p:commandButton value="#{msg['lbl.button.limpiar']}" styleClass="OrangeButton Fright" style="margin-right: 5px;" actionListener="#{clienteBean.Limpiar}" update="pnlBusquedaCliente, tablaListadoCliente" />
+                  <p:commandButton value="#{msg['lbl.button.buscar']}" styleClass="GreenButton Fright" style="margin-right: 5px;" actionListener="#{clienteBean.Buscar}" update="tablaListadoCliente" />
+                </div>
+              </div>
+           
+              
+              
+            </div>
+          </p:panel>
+        </div>
+      </div>
+      <div class="Container100" >
+        <div class="ContainerIndent" >
+          <p:panel id="pnlLstCliente" >
+            <div class="Container100" >
+              <div class="ContainerIndent" >
+              
+              
+                <p:dataTable id="tablaListadoCliente" var="dto" value="#{clienteBean.listaCliente}" rowKey="#{dto.code_cli}" selection="#{clienteBean.cliente}" selectionMode="single" paginator="true" paginatorPosition="bottom" rows="10" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,20,40" emptyMessage="#{msg['lbl.bcliente.search.result']}" >
+                  <p:ajax event="rowSelect" listener="#{clienteBean.onRowSelect}" />
+                  <f:facet name="header" >
+                    <h:outputText value="#{msg['lbl.cliente.search.panel.title']}" />
+                  </f:facet>
+                  <p:column headerText="#{msg['lbl.cliente.column.nom']}" sortBy="#{dto.name_cli}" >
+                    <h:outputText value="#{dto.name_cli}" />
+                  </p:column>
+                  <p:column headerText="#{msg['lbl.cliente.column.ape']}" sortBy="#{dto.sobr_cli}" >
+                    <h:outputText value="#{dto.sobr_cli}" />
+                  </p:column>
+                  <p:column headerText="#{msg['lbl.cliente.column.rmv']}" sortBy="#{dto.rmes_cli}" >
+                    <h:outputText value="#{dto.rmes_cli}" />
+                  </p:column>
+                  <p:column headerText="#{msg['lbl.cliente.column.dr1']}" sortBy="#{dto.end1_cli}" >
+                    <h:outputText value="#{dto.end1_cli}" />
+                  </p:column>
+                  <p:column headerText="#{msg['lbl.cliente.column.dr2']}" sortBy="#{dto.end2_cli}" >
+                    <h:outputText value="#{dto.end2_cli}" />
+                  </p:column>
+                  <p:column headerText="#{msg['lbl.cliente.column.pat']}" sortBy="#{dto.patr_cli}" >
+                    <h:outputText value="#{dto.patr_cli!=null?dto.patr_cli:msg['lbl.bcliente.no.data']}" />
+                  </p:column>
+                  <p:column headerText="#{msg['lbl.cliente.column.div']}" sortBy="#{dto.divi_cli}" >
+                    <h:outputText value="#{dto.divi_cli!=null?dto.divi_cli:msg['lbl.bcliente.no.data']}" />
+                  </p:column>
+                  <p:column headerText="#{msg['lbl.cliente.column.est']}" sortBy="#{dto.code_est}" >
+                    <h:outputText value="#{dto.code_est!=null?utilBean.ObtenerDescricao(dto.code_est,'est'):msg['lbl.bcliente.no.data']}" />
+                  </p:column>
+                  <p:column headerText="#{msg['lbl.cliente.column.tip']}" sortBy="#{dto.code_tip}" >
+                   <h:outputText value="#{utilBean.ObtenerDescricao(dto.code_tip,'tip')}" />
+                  </p:column>
+                  <p:column headerText="#{msg['lbl.cliente.column.ris']}" sortBy="#{dto.code_ris}" >
+                  <h:outputText value="#{utilBean.ObtenerDescricao(dto.code_ris,'ris')}" />
+                  </p:column>
+                </p:dataTable>
+                
+                
+                <div class="Container100" >
+                  <div class="ContainerIndent" >
+                  <p:commandButton value="#{msg['lbl.button.sim.pre']}" styleClass="Fleft" style="margin-right: 5px;" actionListener="#{clienteBean.cargarDatos}" action="#{clienteBean.cargaPaginaLoan}" >
+                      <f:param name="id" value="#{clienteBean.cliente.code_cli}" />
+                    </p:commandButton>
+                    
+                    <p:commandButton value="#{msg['lbl.button.delete']}" styleClass="RedButton Fright" oncomplete="PF('confirmEliminar').show()" />
+                   <p:commandButton value="#{msg['lbl.button.update']}" styleClass="OrangeButton Fright" style="margin-right: 5px;" actionListener="#{clienteBean.cargarDatos}" action="#{clienteBean.cargaPaginaEditar}" >
+                      <f:param name="id" value="#{bclienteBean.cliente.code_cli}" />
+                    </p:commandButton>
+                    <p:button outcome="addCliente" value="#{msg['lbl.button.add']}" style="margin-right: 5px;" styleClass="GreenButton Fright"  />
+                     
+                    
+                  </div>
+                </div>
+                <div class="EmptyBox20" />
+                <div >
+                  <p:confirmDialog id="confirmEliminar" global="true" showEffect="fade" hideEffect="explode" widgetVar="confirmEliminar" header="#{msg['lbl.mensaje.confirm.title']}" severity="alert" message="#{msg['lbl.mensaje.eliminar.confirm']}" >
+                    <p:commandButton value="Yes" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" process="@this" update="confirmEliminar, tablaListadoCliente" oncomplete="PF('confirmEliminar').hide()" actionListener="#{clienteBean.eliminarRegistroCliente}" />
+                    <p:commandButton value="No" styleClass="ui-confirmdialog-no" icon="ui-icon-close" process="@this" update="confirmEliminar" oncomplete="PF('confirmEliminar').hide()" />
+                  </p:confirmDialog>
+                </div>
+              </div>
+            </div>
+          </p:panel>
+          <div class="EmptyBox20" />
+        </div>
+      </div>
+    </h:form>
+  </ui:define>
+</ui:composition>

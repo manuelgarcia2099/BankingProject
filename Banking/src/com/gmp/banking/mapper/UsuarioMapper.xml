@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gmp.banking.mapper.UsuarioMapper" >
+  <resultMap id="BaseResultMap" type="com.gmp.banking.bean.TbUsuario" >
+    <id column="code_use" property="code_use" jdbcType="INTEGER" />
+    <result column="name_use" property="name_use" jdbcType="VARCHAR" />
+    <result column="sobr_use" property="sobr_use" jdbcType="VARCHAR" />
+    <result column="emai_use" property="emai_use" jdbcType="VARCHAR" />
+    <result column="pass_use" property="pass_use" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    code_use, name_use, sobr_use, emai_use, pass_use
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from tb_usuario
+    where code_use = #{code_use,jdbcType=INTEGER}
+  </select>
+  <select id="ObtenerRegistros" resultMap="BaseResultMap" parameterType="com.gmp.banking.bean.TbUsuario" >
+    select code_use, name_use, sobr_use, emai_use, pass_use
+    from tb_usuario where 1 = 1 
+    <if test="code_use != null" >
+        and code_use = #{code_use,jdbcType=INTEGER}
+    </if>
+    <if test="name_use != null and name_use != ''" >
+        and name_use = #{name_use,jdbcType=VARCHAR}
+    </if>
+    <if test="sobr_use != null and sobr_use != ''" >
+        and sobr_use = #{sobr_use,jdbcType=VARCHAR}
+    </if>
+    <if test="emai_use != null and emai_use != ''" >
+        and emai_use = #{emai_use,jdbcType=VARCHAR}
+    </if>
+    <if test="pass_use != null and pass_use != ''" >
+        and pass_use = #{pass_use,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="ObtenerUnRegistro" resultMap="BaseResultMap" parameterType="com.gmp.banking.bean.TbUsuario" >
+    select code_use, name_use, sobr_use, emai_use, pass_use
+    from tb_usuario where 1 = 1 
+    <if test="code_use != null" >
+        and code_use = #{code_use,jdbcType=INTEGER}
+    </if>
+    <if test="name_use != null and name_use != ''" >
+        and name_use = #{name_use,jdbcType=VARCHAR}
+    </if>
+    <if test="sobr_use != null and sobr_use != ''" >
+        and sobr_use = #{sobr_use,jdbcType=VARCHAR}
+    </if>
+    <if test="emai_use != null and emai_use != ''" >
+        and emai_use = #{emai_use,jdbcType=VARCHAR}
+    </if>
+    <if test="pass_use != null and pass_use != ''" >
+        and pass_use = #{pass_use,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_usuario
+    where code_use = #{code_use,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gmp.banking.bean.TbUsuario" >
+    insert into tb_usuario (code_use, name_use, sobr_use, 
+      emai_use, pass_use)
+    values (#{code_use,jdbcType=INTEGER}, #{name_use,jdbcType=VARCHAR}, #{sobr_use,jdbcType=VARCHAR}, 
+      #{emai_use,jdbcType=VARCHAR}, #{pass_use,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gmp.banking.bean.TbUsuario" >
+    insert into tb_usuario
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="code_use != null" >
+        code_use,
+      </if>
+      <if test="name_use != null" >
+        name_use,
+      </if>
+      <if test="sobr_use != null" >
+        sobr_use,
+      </if>
+      <if test="emai_use != null" >
+        emai_use,
+      </if>
+      <if test="pass_use != null" >
+        pass_use,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="code_use != null" >
+        #{code_use,jdbcType=INTEGER},
+      </if>
+      <if test="name_use != null" >
+        #{name_use,jdbcType=VARCHAR},
+      </if>
+      <if test="sobr_use != null" >
+        #{sobr_use,jdbcType=VARCHAR},
+      </if>
+      <if test="emai_use != null" >
+        #{emai_use,jdbcType=VARCHAR},
+      </if>
+      <if test="pass_use != null" >
+        #{pass_use,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <selectKey resultType="int" keyProperty="code_use" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gmp.banking.bean.TbUsuario" >
+    update tb_usuario
+    <set >
+      <if test="name_use != null" >
+        name_use = #{name_use,jdbcType=VARCHAR},
+      </if>
+      <if test="sobr_use != null" >
+        sobr_use = #{sobr_use,jdbcType=VARCHAR},
+      </if>
+      <if test="emai_use != null" >
+        emai_use = #{emai_use,jdbcType=VARCHAR},
+      </if>
+      <if test="pass_use != null" >
+        pass_use = #{pass_use,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where code_use = #{code_use,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gmp.banking.bean.TbUsuario" >
+    update tb_usuario
+    set name_use = #{name_use,jdbcType=VARCHAR},
+      sobr_use = #{sobr_use,jdbcType=VARCHAR},
+      emai_use = #{emai_use,jdbcType=VARCHAR},
+      pass_use = #{pass_use,jdbcType=VARCHAR}
+    where code_use = #{code_use,jdbcType=INTEGER}
+  </update>
+</mapper>

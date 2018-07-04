@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gmp.banking.mapper.ClienteMapper" >
+  <resultMap id="BaseResultMap" type="com.gmp.banking.bean.TbCliente" >
+    <id column="code_cli" property="code_cli" jdbcType="INTEGER" />
+    <result column="name_cli" property="name_cli" jdbcType="VARCHAR" />
+    <result column="sobr_cli" property="sobr_cli" jdbcType="VARCHAR" />
+    <result column="rmes_cli" property="rmes_cli" jdbcType="DECIMAL" />
+    <result column="end1_cli" property="end1_cli" jdbcType="VARCHAR" />
+    <result column="end2_cli" property="end2_cli" jdbcType="VARCHAR" />
+    <result column="patr_cli" property="patr_cli" jdbcType="DECIMAL" />
+    <result column="divi_cli" property="divi_cli" jdbcType="DECIMAL" />
+    <result column="code_est" property="code_est" jdbcType="INTEGER" />
+    <result column="code_tip" property="code_tip" jdbcType="INTEGER" />
+    <result column="code_ris" property="code_ris" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    code_cli, name_cli, sobr_cli, rmes_cli, end1_cli, end2_cli, patr_cli, divi_cli, code_est, 
+    code_tip, code_ris
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from tb_cliente
+    where code_cli = #{code_cli,jdbcType=INTEGER}
+  </select>
+  <select id="ObtenerRegistros" resultMap="BaseResultMap" parameterType="com.gmp.banking.bean.TbCliente" >
+    select code_cli, name_cli, sobr_cli, rmes_cli, end1_cli, end2_cli, patr_cli, divi_cli, 
+    code_est, code_tip, code_ris
+    from tb_cliente where 1 = 1 
+    <if test="code_cli != null" >
+        and code_cli = #{code_cli,jdbcType=INTEGER}
+    </if>
+    <if test="name_cli != null and name_cli != ''" >
+        and name_cli = #{name_cli,jdbcType=VARCHAR}
+    </if>
+    <if test="sobr_cli != null and sobr_cli != ''" >
+        and sobr_cli = #{sobr_cli,jdbcType=VARCHAR}
+    </if>
+    <if test="rmes_cli != null" >
+        and rmes_cli = #{rmes_cli,jdbcType=DECIMAL}
+    </if>
+    <if test="end1_cli != null and end1_cli != ''" >
+        and end1_cli = #{end1_cli,jdbcType=VARCHAR}
+    </if>
+    <if test="end2_cli != null and end2_cli != ''" >
+        and end2_cli = #{end2_cli,jdbcType=VARCHAR}
+    </if>
+    <if test="patr_cli != null" >
+        and patr_cli = #{patr_cli,jdbcType=DECIMAL}
+    </if>
+    <if test="divi_cli != null" >
+        and divi_cli = #{divi_cli,jdbcType=DECIMAL}
+    </if>
+    <if test="code_est != null" >
+        and code_est = #{code_est,jdbcType=INTEGER}
+    </if>
+    <if test="code_tip != null" >
+        and code_tip = #{code_tip,jdbcType=INTEGER}
+    </if>
+    <if test="code_ris != null" >
+        and code_ris = #{code_ris,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="ObtenerUnRegistro" resultMap="BaseResultMap" parameterType="com.gmp.banking.bean.TbCliente" >
+    select code_cli, name_cli, sobr_cli, rmes_cli, end1_cli, end2_cli, patr_cli, divi_cli, 
+    code_est, code_tip, code_ris
+    from tb_cliente where 1 = 1 
+    <if test="code_cli != null" >
+        and code_cli = #{code_cli,jdbcType=INTEGER}
+    </if>
+    <if test="name_cli != null and name_cli != ''" >
+        and name_cli = #{name_cli,jdbcType=VARCHAR}
+    </if>
+    <if test="sobr_cli != null and sobr_cli != ''" >
+        and sobr_cli = #{sobr_cli,jdbcType=VARCHAR}
+    </if>
+    <if test="rmes_cli != null" >
+        and rmes_cli = #{rmes_cli,jdbcType=DECIMAL}
+    </if>
+    <if test="end1_cli != null and end1_cli != ''" >
+        and end1_cli = #{end1_cli,jdbcType=VARCHAR}
+    </if>
+    <if test="end2_cli != null and end2_cli != ''" >
+        and end2_cli = #{end2_cli,jdbcType=VARCHAR}
+    </if>
+    <if test="patr_cli != null" >
+        and patr_cli = #{patr_cli,jdbcType=DECIMAL}
+    </if>
+    <if test="divi_cli != null" >
+        and divi_cli = #{divi_cli,jdbcType=DECIMAL}
+    </if>
+    <if test="code_est != null" >
+        and code_est = #{code_est,jdbcType=INTEGER}
+    </if>
+    <if test="code_tip != null" >
+        and code_tip = #{code_tip,jdbcType=INTEGER}
+    </if>
+    <if test="code_ris != null" >
+        and code_ris = #{code_ris,jdbcType=INTEGER}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_cliente
+    where code_cli = #{code_cli,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gmp.banking.bean.TbCliente" >
+    insert into tb_cliente (code_cli, name_cli, sobr_cli, 
+      rmes_cli, end1_cli, end2_cli, 
+      patr_cli, divi_cli, code_est, 
+      code_tip, code_ris)
+    values (#{code_cli,jdbcType=INTEGER}, #{name_cli,jdbcType=VARCHAR}, #{sobr_cli,jdbcType=VARCHAR}, 
+      #{rmes_cli,jdbcType=DECIMAL}, #{end1_cli,jdbcType=VARCHAR}, #{end2_cli,jdbcType=VARCHAR}, 
+      #{patr_cli,jdbcType=DECIMAL}, #{divi_cli,jdbcType=DECIMAL}, #{code_est,jdbcType=INTEGER}, 
+      #{code_tip,jdbcType=INTEGER}, #{code_ris,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gmp.banking.bean.TbCliente" >
+    insert into tb_cliente
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="code_cli != null" >
+        code_cli,
+      </if>
+      <if test="name_cli != null" >
+        name_cli,
+      </if>
+      <if test="sobr_cli != null" >
+        sobr_cli,
+      </if>
+      <if test="rmes_cli != null" >
+        rmes_cli,
+      </if>
+      <if test="end1_cli != null" >
+        end1_cli,
+      </if>
+      <if test="end2_cli != null" >
+        end2_cli,
+      </if>
+      <if test="patr_cli != null" >
+        patr_cli,
+      </if>
+      <if test="divi_cli != null" >
+        divi_cli,
+      </if>
+      <if test="code_est != null" >
+        code_est,
+      </if>
+      <if test="code_tip != null" >
+        code_tip,
+      </if>
+      <if test="code_ris != null" >
+        code_ris,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="code_cli != null" >
+        #{code_cli,jdbcType=INTEGER},
+      </if>
+      <if test="name_cli != null" >
+        #{name_cli,jdbcType=VARCHAR},
+      </if>
+      <if test="sobr_cli != null" >
+        #{sobr_cli,jdbcType=VARCHAR},
+      </if>
+      <if test="rmes_cli != null" >
+        #{rmes_cli,jdbcType=DECIMAL},
+      </if>
+      <if test="end1_cli != null" >
+        #{end1_cli,jdbcType=VARCHAR},
+      </if>
+      <if test="end2_cli != null" >
+        #{end2_cli,jdbcType=VARCHAR},
+      </if>
+      <if test="patr_cli != null" >
+        #{patr_cli,jdbcType=DECIMAL},
+      </if>
+      <if test="divi_cli != null" >
+        #{divi_cli,jdbcType=DECIMAL},
+      </if>
+      <if test="code_est != null" >
+        #{code_est,jdbcType=INTEGER},
+      </if>
+      <if test="code_tip != null" >
+        #{code_tip,jdbcType=INTEGER},
+      </if>
+      <if test="code_ris != null" >
+        #{code_ris,jdbcType=INTEGER},
+      </if>
+    </trim>
+    <selectKey resultType="int" keyProperty="code_cli" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gmp.banking.bean.TbCliente" >
+    update tb_cliente
+    <set >
+      <if test="name_cli != null" >
+        name_cli = #{name_cli,jdbcType=VARCHAR},
+      </if>
+      <if test="sobr_cli != null" >
+        sobr_cli = #{sobr_cli,jdbcType=VARCHAR},
+      </if>
+      <if test="rmes_cli != null" >
+        rmes_cli = #{rmes_cli,jdbcType=DECIMAL},
+      </if>
+      <if test="end1_cli != null" >
+        end1_cli = #{end1_cli,jdbcType=VARCHAR},
+      </if>
+      <if test="end2_cli != null" >
+        end2_cli = #{end2_cli,jdbcType=VARCHAR},
+      </if>
+      <if test="patr_cli != null" >
+        patr_cli = #{patr_cli,jdbcType=DECIMAL},
+      </if>
+      <if test="divi_cli != null" >
+        divi_cli = #{divi_cli,jdbcType=DECIMAL},
+      </if>
+      <if test="code_est != null" >
+        code_est = #{code_est,jdbcType=INTEGER},
+      </if>
+      <if test="code_tip != null" >
+        code_tip = #{code_tip,jdbcType=INTEGER},
+      </if>
+      <if test="code_ris != null" >
+        code_ris = #{code_ris,jdbcType=INTEGER},
+      </if>
+    </set>
+    where code_cli = #{code_cli,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gmp.banking.bean.TbCliente" >
+    update tb_cliente
+    set name_cli = #{name_cli,jdbcType=VARCHAR},
+      sobr_cli = #{sobr_cli,jdbcType=VARCHAR},
+      rmes_cli = #{rmes_cli,jdbcType=DECIMAL},
+      end1_cli = #{end1_cli,jdbcType=VARCHAR},
+      end2_cli = #{end2_cli,jdbcType=VARCHAR},
+      patr_cli = #{patr_cli,jdbcType=DECIMAL},
+      divi_cli = #{divi_cli,jdbcType=DECIMAL},
+      code_est = #{code_est,jdbcType=INTEGER},
+      code_tip = #{code_tip,jdbcType=INTEGER},
+      code_ris = #{code_ris,jdbcType=INTEGER}
+    where code_cli = #{code_cli,jdbcType=INTEGER}
+  </update>
+</mapper>

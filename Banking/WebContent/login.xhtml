@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Login.xhtml</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        
+    <h:outputScript name="js/layout.js" library="sentinel-layout" />
+    <h:outputStylesheet name="css/font-icon-layout.css" library="sentinel-layout" />
+    <h:outputStylesheet name="css/sentinel-layout.css" library="sentinel-layout" />
+    <h:outputStylesheet name="css/core-layout.css" library="sentinel-layout" />
+</h:head>
+
+<h:body class="fontRegular login-back white-back">
+    <div class="Container80 MaxWid500 Fnone MarAuto TexAlCenter PaddingTopPercent10">
+        <div class="EmptyBox10"></div>
+    </div>
+    
+    <!-- LOGIN BOX COVER START -->
+    <div class="Container80 MaxWid500 white-back Fnone MarAuto BordRad10" id="login-box">
+        <div class="Container100">
+            <div class="Container100 TexAlCenter Animated05 BoxSizeBorder TabBtn left TabBtnActiveLeft" role="1">
+                <div class="Container100 Fnone MarAuto FontBold"><i class="icon-lock"></i> Login</div>
+            </div>
+            
+            <div class="Container90 Fnone MarAuto TexAlCenter TabContent" id="TAB1">
+            	<h:form id="formLogin">
+   				<p:growl id="msg" autoUpdate="true" showDetail="true" life="4800" />    
+            	
+                <div class="EmptyBox50"></div>
+                <p:inputText value="#{loginBean.usuarioLogin.emai_use}" placeholder="#{msg['lbl.username']}" maxlength="80" styleClass="Container80 Fnone MarAuto Fs18" required="true" requiredMessage="#{msg['lbl.username.requiredmessage']}" validatorMessage="#{msg['lbl.username.validatormessage']}" >
+                	<f:validateRegex	pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />	
+                </p:inputText>
+                <div class="EmptyBox10"></div>
+                <p:password value="#{loginBean.usuarioLogin.pass_use}" placeholder="#{msg['lbl.password']}"  maxlength="20" styleClass="Container80 Fnone MarAuto Fs18" required="true" feedback="false" requiredMessage="#{msg['lbl.password.requiredmessage']}" />
+                <div class="EmptyBox10"></div>
+
+                
+				<p:commandButton id="loginButton" value="#{msg['lbl.login']}" styleClass="Fs16" action="#{loginBean.login}" icon="icon-key" />
+
+                <div class="EmptyBox50"></div>
+                </h:form>
+            </div>
+            
+             
+        </div>
+    </div>
+    <!-- LOGIN BOX COVER END -->
+    
+</h:body>
+
+</html>
